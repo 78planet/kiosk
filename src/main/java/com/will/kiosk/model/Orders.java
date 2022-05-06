@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Orders {
     private final UUID orderId;
     private OrderStatus orderStatus;
-    private final int orderTableNumber;
+    private int orderTableNumber;
     private final LocalDateTime createdAt;
 
     public Orders(UUID orderId, OrderStatus orderStatus, int orderTableNumber, LocalDateTime createdAt) {
@@ -34,6 +34,10 @@ public class Orders {
 
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public void setOrderTableNumber(int orderTableNumber) {
+        this.orderTableNumber = orderTableNumber;
     }
 
     @Override
