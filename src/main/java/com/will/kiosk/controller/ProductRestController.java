@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1")
 public class ProductRestController {
 
     private final ProductService productService;
@@ -17,17 +18,17 @@ public class ProductRestController {
         this.productService = productService;
     }
 
-    @GetMapping("/api/v1/products")
+    @GetMapping("/products")
     public List<Product> productList() {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/api/v1/products/{categoryId}")
+    @GetMapping("/products/{categoryId}")
     public List<Product> productListByCategory(@PathVariable int categoryId) {
         return productService.getProductsByCategory(categoryId);
     }
 
-    @PostMapping("/api/v1/products")
+    @PostMapping("/product")
     public Product createProduct(@RequestBody ProductDTO productDTO) {
         return productService.createProduct(
                 productDTO.productName(),
@@ -37,7 +38,7 @@ public class ProductRestController {
         );
     }
 
-    @PutMapping("/api/v1/products")
+    @PutMapping("/product")
     public Product updateOrder(@RequestBody ProductDTO productDTO) {
         return productService.updateProduct(
                 productDTO.productId(),
@@ -46,5 +47,10 @@ public class ProductRestController {
                 productDTO.price(),
                 productDTO.categoryId()
         );
+    }
+
+    @DeleteMapping("/product/{productId}")
+    public void deleteProduct(@PathVariable int productId) {
+        productService.deleteProduct(productId);
     }
 }

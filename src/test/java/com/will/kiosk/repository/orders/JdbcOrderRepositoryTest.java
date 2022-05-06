@@ -3,7 +3,6 @@ package com.will.kiosk.repository.orders;
 import com.will.kiosk.model.Category;
 import com.will.kiosk.model.OrderStatus;
 import com.will.kiosk.model.Orders;
-import com.will.kiosk.repository.category.JdbcCategoryRepository;
 import com.wix.mysql.EmbeddedMysql;
 import com.wix.mysql.ScriptResolver;
 import com.wix.mysql.config.Charset;
@@ -51,9 +50,9 @@ class JdbcOrderRepositoryTest {
     }
 
     @Autowired
-    JdbcOrdersRepository orderRepository;
+    JdbcOrderRepository orderRepository;
 
-    private Category newCategory = new Category(1, "국", "국물", LocalDateTime.now());
+    private Category newCategory = new Category(1, "국", "국물", LocalDateTime.now(), null);
 
     private Orders newOrders = new Orders(UUID.randomUUID(), OrderStatus.ORDER_ACCEPTED, 12, LocalDateTime.now());
 
@@ -81,7 +80,7 @@ class JdbcOrderRepositoryTest {
     @Order(3)
     @DisplayName("상품을 삭제할 수 있다.")
     void testDelete() {
-        orderRepository.delete(newOrders);
+        orderRepository.delete(newOrders.getOrderId());
 
         var category = orderRepository.findById(newOrders.getOrderId());
         assertThat(category.isEmpty()).isTrue();
