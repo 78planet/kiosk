@@ -3,3 +3,5 @@ spring:
     url: jdbc:mysql://${MY_SQL_HOST}:${MY_SQL_PORT}/kiosk
     username: ${MY_SQL_USER_ID}
     password: ${MY_SQL_USER_PW}
+  jackson:
+    property-naming-strategy: SNAKE_CASE
