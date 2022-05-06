@@ -37,7 +37,7 @@ public class JdbcCategoryRepository implements CategoryRepository {
     @Override
     public Category update(Category category) {
         var update = jdbcTemplate.update(
-                "UPDATE category SET category_name = :categoryName, description = :description, created_at = :createdAt, updated_at = :updatedAt" +
+                "UPDATE category SET category_name = :categoryName, description = :description, updated_at = :updatedAt" +
                         " WHERE category_id = :categoryId", toParamMap(category));
         if (update != 1) {
             throw new RuntimeException("Nothing was updated");
@@ -46,10 +46,10 @@ public class JdbcCategoryRepository implements CategoryRepository {
     }
 
     @Override
-    public void delete(Category category) {
+    public void delete(int categoryId) {
         var update = jdbcTemplate.update(
                 "DELETE FROM category WHERE category_id = :categoryId",
-                     Collections.singletonMap("categoryId", category.getCategoryId()));
+                     Collections.singletonMap("categoryId", categoryId));
         if (update != 1) {
             throw new RuntimeException("Nothing was updated");
         }

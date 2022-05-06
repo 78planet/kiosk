@@ -54,7 +54,7 @@ class JdbcCategoryRepositoryTest {
     @Autowired
     JdbcCategoryRepository categoryRepository;
 
-    private Category newCategory = new Category(1, "국", "국물", LocalDateTime.now());
+    private Category newCategory = new Category(1, "국", "국물", LocalDateTime.now(), null);
 
 
     @Test
@@ -81,7 +81,7 @@ class JdbcCategoryRepositoryTest {
     @Order(3)
     @DisplayName("상품을 삭제할 수 있다.")
     void testDelete() {
-        categoryRepository.delete(newCategory);
+        categoryRepository.delete(newCategory.getCategoryId());
 
         var category = categoryRepository.findById(newCategory.getCategoryId());
         assertThat(category.isEmpty()).isTrue();

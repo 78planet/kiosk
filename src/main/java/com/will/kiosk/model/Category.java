@@ -3,7 +3,7 @@ package com.will.kiosk.model;
 import java.time.LocalDateTime;
 
 public class Category {
-    private final int categoryId;
+    private int categoryId;
     private String categoryName;
     private String description;
     private final LocalDateTime createdAt;
@@ -17,12 +17,13 @@ public class Category {
         this.updatedAt = updatedAt;
     }
 
-    public Category(int categoryId, String categoryName, String description, LocalDateTime createdAt) {
-        this.categoryId = categoryId;
+    public Category(String categoryName, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.categoryName = categoryName;
         this.description = description;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
+
 
     public int getCategoryId() {
         return categoryId;
