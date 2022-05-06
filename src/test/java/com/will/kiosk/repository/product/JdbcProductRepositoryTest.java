@@ -67,9 +67,9 @@ class JdbcProductRepositoryTest {
 
     );
     private List<Category> newCategory = List.of(
-            new Category(1, "쥬류", "국물", LocalDateTime.now()),
-            new Category(2, "주류2", "국물2", LocalDateTime.now()),
-            new Category(3, "주류3", "국물3", LocalDateTime.now())
+            new Category(1, "쥬류", "국물", LocalDateTime.now(), null),
+            new Category(2, "주류2", "국물2", LocalDateTime.now(), null),
+            new Category(3, "주류3", "국물3", LocalDateTime.now(), null)
     );
 
     @Test
@@ -111,7 +111,7 @@ class JdbcProductRepositoryTest {
     @Order(4)
     @DisplayName("상품을 삭제할 수 있다.")
     void testDelete() {
-        productRepository.delete(newProduct);
+        productRepository.delete(newProduct.getProductId());
 
         var category = productRepository.findById(newProduct.getProductId());
         assertThat(category.isEmpty()).isTrue();

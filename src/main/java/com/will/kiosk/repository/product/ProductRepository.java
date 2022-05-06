@@ -7,16 +7,16 @@ import java.util.Optional;
 
 public interface ProductRepository {
 
-    Product insert(Product category);
+    Product insert(Product product);
 
     List<Product> findAll();
 
-    Product update(Product category);
+    Product update(Product product);
 
-    void delete(Product category);
+    void delete(int productId);
 
-    Optional<Product> findById(int categoryId);
+    Optional<Product> findById(int productId);
 
-    List<Product> findProductsByCategory(int categoryId);
+    List<Product> findProductsByCategory(int productId);
 
 }

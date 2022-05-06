@@ -47,10 +47,10 @@ public class JdbcProductRepository implements ProductRepository {
     }
 
     @Override
-    public void delete(Product product) {
+    public void delete(int productId) {
         var update = jdbcTemplate.update(
                 "DELETE FROM product WHERE product_id = :productId",
-                Collections.singletonMap("productId", product.getProductId()));
+                Collections.singletonMap("productId", productId));
         if (update != 1) {
             throw new RuntimeException("Nothing was updated");
         }

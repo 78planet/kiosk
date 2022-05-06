@@ -39,4 +39,9 @@ public class DefaultProductService implements ProductService {
         Product product = new Product(productId, productName, description, price, categoryId, null, LocalDateTime.now());
         return productRepository.update(product);
     }
+
+    @Override
+    public void deleteProduct(int productId) {
+        productRepository.delete(productId);
+    }
 }
