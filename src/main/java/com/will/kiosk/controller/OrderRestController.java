@@ -1,5 +1,6 @@
 package com.will.kiosk.controller;
 
+import com.will.kiosk.dao.OrderDAO;
 import com.will.kiosk.dto.OrderDTO;
 import com.will.kiosk.model.Orders;
 import com.will.kiosk.service.orders.OrderService;
@@ -23,11 +24,17 @@ public class OrderRestController {
         return orderService.getAllOrder();
     }
 
+    @GetMapping("/orders/{orderId}")
+    public OrderDAO orderList(@PathVariable UUID orderId) {
+        return orderService.getOrderById(orderId);
+    }
+
     @PostMapping("/order")
     public Orders createOrder(@RequestBody OrderDTO orderDTO) {
         return orderService.createOrder(
                 orderDTO.orderStatus(),
-                orderDTO.orderTableNumber()
+                orderDTO.orderTableNumber(),
+                orderDTO.orderItems()
         );
     }
 
